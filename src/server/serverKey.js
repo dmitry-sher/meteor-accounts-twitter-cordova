@@ -1,6 +1,6 @@
 var profileFields = [];
 
-CFB.Configure = function (config) {
+CTW.Configure = function (config) {
     if(Meteor.settings.environment === "production")
         if(!config || !config.pro.APP_ID || !config.pro.secret) {
             throw new Error("Meteor settings for accounts-facebook-cordova not configured correctly.");
@@ -12,7 +12,7 @@ CFB.Configure = function (config) {
     if(config.profileFields) {
         _.each(config.profileFields, function (p) {
             if(_.indexOf(profileFields, p) == -1)
-                profileFields.push(p); 
+                profileFields.push(p);
         });
     }
     ServiceConfiguration.configurations.remove({
@@ -29,7 +29,7 @@ CFB.Configure = function (config) {
             service: "facebook",
             appId: config.dev.APP_ID,
             secret: config.dev.secret
-        });  
+        });
     // https://github.com/meteor/meteor/blob/devel/packages/accounts-facebook/facebook.js#L15
     Accounts.addAutopublishFields({
         // publish all fields including access token, which can legitimately
@@ -44,6 +44,6 @@ CFB.Configure = function (config) {
     });
 };
 
-CFB.getProfileFields = function () {
+CTW.getProfileFields = function () {
     return profileFields;
 };

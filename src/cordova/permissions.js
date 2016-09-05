@@ -2,16 +2,16 @@ var _permissions = [];
 /**
  *
  */
-CFB.Configure = function (permissions) {
+CTW.Configure = function (permissions) {
     _.each(permissions, function (p) {
         if(_.indexOf(_permissions, p) == -1)
-            _permissions.push(p); 
+            _permissions.push(p);
     });
 };
 /**
  *
  *
  */
-CFB.getPermissions = function () {
+CTW.getPermissions = function () {
     return _permissions;
 };

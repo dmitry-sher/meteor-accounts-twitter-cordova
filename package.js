@@ -1,6 +1,6 @@
 Package.describe({
-    name: "particle4dev:cordova-fb",
-    version: "0.11.0-2",
+    name: "dmitrysher:cordova-twitter",
+    version: "0.0.1",
     summary: "Login service for Facebook accounts (works with cordova)",
     git: "https://github.com/particle4dev/meteor-accounts-facebook-cordova.git"
 });
@@ -12,7 +12,7 @@ var browser = 'web.browser';
 var cordova = 'web.cordova';
 
 Cordova.depends({
-    'com.phonegap.plugins.facebookconnect': '0.11.0'
+    'twitter-connect-plugin': '0.6.0'
 });
 
 Package.registerBuildPlugin({
@@ -32,7 +32,6 @@ Package.on_use(function(api) {
         'underscore',
         'accounts-base',
         'accounts-oauth',
-        'facebook',
         'service-configuration'
     ], both);
     // Export Accounts (etc) to packages using this one.
@@ -59,5 +58,5 @@ Package.on_use(function(api) {
 
     api.add_files('src/login.js', 'web');
     if(api.export)
-        api.export('CFB');
+        api.export('CTW');
 });

@@ -1,1 +1,1 @@
-CFB.Configure = function () {};
+CTW.Configure = function () {};

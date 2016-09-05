@@ -1,13 +1,13 @@
 // https://github.com/meteor/meteor/blob/devel/packages/facebook/facebook_server.js
 Accounts.registerLoginHandler(function(loginRequest) {
-    if(!loginRequest.cordova) {
+    if(!loginRequest.twitter) {
         return undefined;
     }
 
     loginRequest = loginRequest.authResponse;
 
-    var identity = CFB.getIdentity(loginRequest.accessToken);
-    var profilePicture = CFB.getProfilePicture(loginRequest.accessToken);
+    var identity = CTW.getIdentity(loginRequest.accessToken);
+    var profilePicture = CTW.getProfilePicture(loginRequest.accessToken);
 
     var serviceData = {
         accessToken: loginRequest.accessToken,
@@ -21,7 +21,7 @@ Accounts.registerLoginHandler(function(loginRequest) {
     _.extend(serviceData, fields);
 
     var options = {profile: {}};
-    var profileFields = _.pick(identity, CFB.getProfileFields());
+    var profileFields = _.pick(identity, CTW.getProfileFields());
     _.extend(options.profile, profileFields);
 
     options.profile.avatar = profilePicture;

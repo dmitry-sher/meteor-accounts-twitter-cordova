@@ -25,9 +25,9 @@ var archConfig = {
 var configStringify = function(config) {
     // http://docs.meteor.com/#/full/ejson_stringify
     var str = EJSON.stringify(config, 4);
-    return 'Meteor.startup(function() {\n\tCFB.Configure(' + str + ');\n});'
+    return 'Meteor.startup(function() {\n\tCTW.Configure(' + str + ');\n});'
 };
-Plugin.registerSourceHandler('facebook.json', function(compileStep) {
+Plugin.registerSourceHandler('twitter.json', function(compileStep) {
     // Read the configuration
     var configString = compileStep.read().toString('utf8');
 
@@ -39,8 +39,8 @@ Plugin.registerSourceHandler('facebook.json', function(compileStep) {
         var config = archConfig[compileStep.arch](configString);
         // Serve the configuration
         compileStep.addJavaScript({
-            path: 'facebook.config.' + compileStep.arch + '.js',
-            sourcePath: 'facebook.config.' + compileStep.arch + '.js',
+            path: 'twitter.config.' + compileStep.arch + '.js',
+            sourcePath: 'twitter.config.' + compileStep.arch + '.js',
             data: configStringify(config),
             // https://github.com/meteor/meteor/blob/0371c4ff26a67319db0f70ec18132b7e7659e3a7/tools/compiler.js#L444
             // It must be present and should
@@ -54,7 +54,7 @@ Plugin.registerSourceHandler('facebook.json', function(compileStep) {
     catch (e) {
         var message = e.message ? e.message : e.toString();
         compileStep.error({
-            message: "cordova facebook compiler error >> " + message,
+            message: "cordova twitter compiler error >> " + message,
             sourcePath: e.filename || compileStep.inputPath,
             line: e.line - 1,
             column: e.column + 1

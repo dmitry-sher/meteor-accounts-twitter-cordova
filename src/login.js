@@ -1,5 +1,5 @@
-Accounts.oauth.registerService('facebook');
-Meteor.loginWithFacebook = function(options, callback) {
+Accounts.oauth.registerService('twitter');
+Meteor.loginWithTwitter = function(options, callback) {
     // support a callback without options
     if (! callback && typeof options === "function") {
         callback = options;
@@ -9,7 +9,7 @@ Meteor.loginWithFacebook = function(options, callback) {
     var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(callback);
 
     var fbLoginSuccess = function (data) {
-        data.cordova = true;
+        data.twitter = true;
         Accounts.callLoginMethod({
             methodArguments: [data],
             userCallback: callback
@@ -17,13 +17,13 @@ Meteor.loginWithFacebook = function(options, callback) {
     }
 
     if (Meteor.isCordova) {
-        CFB.getLoginStatus(function (error, response) {
+        CTW.getLoginStatus(function (error, response) {
             if(error) {
                 callback(error, null);
                 return;
             }
             if (response.status != "connected") {
-                CFB.loginCodova(function (err, res) {
+                CTW.loginCordova(function (err, res) {
                     if(err) {
                         callback(err, null);
                         return;
@@ -78,4 +78,4 @@ var login = function (cb) {
         options.requestOfflineToken = Accounts.ui._options.requestOfflineToken[serviceName];
     loginWithService(options, callback);
 }
-CFB.login = login;
+CTW.login = login;
